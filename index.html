@@ -1,16 +1,11 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trilha Gramatical</title>
-    <style>
-        body { text-align: center; font-family: Arial, sans-serif; }
-        #tabuleiro { display: flex; flex-wrap: wrap; width: 300px; margin: 20px auto; }
-        .casa { width: 50px; height: 50px; border: 1px solid black; display: flex; align-items: center; justify-content: center; }
-        #jogador { background-color: red; color: white; border-radius: 50%; width: 30px; height: 30px; }
-        #pergunta-container { display: none; margin-top: 20px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Jogo de Trilha Gramatical</h1>
@@ -22,52 +17,6 @@
         <button onclick="verificarResposta(true)">Correto</button>
         <button onclick="verificarResposta(false)">Errado</button>
     </div>
-    <script>
-        let posicaoJogador = 0;
-        const tabuleiro = document.getElementById("tabuleiro");
-
-        // Criar casas do tabuleiro
-        for (let i = 0; i < 16; i++) {
-            let casa = document.createElement("div");
-            casa.className = "casa";
-            casa.id = "casa-" + i;
-            if (i === 0) {
-                let jogador = document.createElement("div");
-                jogador.id = "jogador";
-                casa.appendChild(jogador);
-            }
-            tabuleiro.appendChild(casa);
-        }
-
-        function rolarDado() {
-            let resultado = Math.floor(Math.random() * 3) + 1;
-            document.getElementById("resultadoDado").innerText = "Você tirou: " + resultado;
-            mostrarPergunta(resultado);
-        }
-
-        function mostrarPergunta(passos) {
-            document.getElementById("pergunta-container").style.display = "block";
-            document.getElementById("pergunta").innerText = "Qual é a classificação da oração coordenada na frase: 'Estudei muito, mas não passei'?";
-            window.passos = passos;
-        }
-
-        function verificarResposta(correta) {
-            if (correta) {
-                moverJogador(window.passos);
-            }
-            document.getElementById("pergunta-container").style.display = "none";
-        }
-
-        function moverJogador(passos) {
-            let novaPosicao = posicaoJogador + passos;
-            if (novaPosicao < 16) {
-                document.getElementById("casa-" + posicaoJogador).innerHTML = "";
-                posicaoJogador = novaPosicao;
-                document.getElementById("casa-" + posicaoJogador).appendChild(document.getElementById("jogador"));
-            } else {
-                alert("Parabéns! Você concluiu a trilha!");
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
